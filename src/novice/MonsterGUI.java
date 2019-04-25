@@ -10,6 +10,9 @@ import javax.swing.event.ListSelectionListener;
 
 public class MonsterGUI {
     private JPanel MainGui;
+    private JPanel jp1;
+    private JPanel jp2;
+    private JPanel jp3;
     private JList MonsList;
     private JButton attack;
     private JButton skillass1;
@@ -24,6 +27,9 @@ public class MonsterGUI {
     private String[] monster_list;
     public MonsterGUI(Novice nv){
         MainGui = new JPanel();
+        jp1 = new JPanel();
+        jp2 = new JPanel();
+        jp3 = new JPanel();
         MonsList = new JList<>();
         attack = new JButton("Attack!!!");
         skillass1 = new JButton("Venom Knife");
@@ -60,6 +66,7 @@ public class MonsterGUI {
         monslist.add(Goblin);
         monslist.add(Hornet);
         monslist.add(Manblatt);
+        
         monster_list = new String[monslist.size()];
         for(int i = 0 ; i < monslist.size(); i++){
             if(monslist.get(i) != null) {
@@ -152,20 +159,27 @@ public class MonsterGUI {
                     }
                 }
         });
-        MainGui.setLayout(new GridLayout(1,3,10,30));
-        MainGui.add(MonsList);
-        MainGui.add(Monsname);
-        MainGui.add(Monslevel);
-        MainGui.add(MonsHp);
-        MainGui.add(attack);
+        //MainGui.setLayout(new GridLayout(1,5,10,30));
+        jp1.setLayout(new BoxLayout(jp1,BoxLayout.Y_AXIS));
+        jp1.add(MonsList);
+        jp2.setLayout(new GridLayout(3,1,10,25));
+        jp2.add(attack);
         if("Assassin".equals(novice.Classnv)){
-        MainGui.add(skillass1);
-        MainGui.add(skillass2);
+        jp2.add(skillass1);
+        jp2.add(skillass2);
         }
         if("DualSword".equals(novice.Classnv)){
-        MainGui.add(skillDualSw1);
-        MainGui.add(skillDualSw2);
+        jp2.add(skillDualSw1);
+        jp2.add(skillDualSw2);
         }
+       jp3.setLayout(new BoxLayout(jp3,BoxLayout.Y_AXIS));
+       jp3.add(Monsname);
+       jp3.add(Monslevel);
+       jp3.add(MonsHp);
+       MainGui.add(jp1,BorderLayout.WEST);
+       MainGui.add(jp3,BorderLayout.CENTER);
+       MainGui.add(jp2,BorderLayout.EAST);
+       
         
     }
     
